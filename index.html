@@ -2,14 +2,24 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=https://conclusion-wrist-demand-exception.trycloudflare.com">
   <title>Party Photo Upload</title>
+  <meta http-equiv="Cache-Control" content="no-store" />
 </head>
 <body>
-  <p>If you are not redirected, <a id="go">click here</a>.</p>
+  <p>If you are not redirected, <a id="go" href="#">click here</a>.</p>
   <script>
-    // fallback: show the target so you can edit easily
-    document.getElementById('go').href = 'https://conclusion-wrist-demand-exception.trycloudflare.com';
+    fetch('redirect.json', { cache: 'no-store' })
+      .then(response => response.json())
+      .then(data => {
+        const target = data.url;
+        const redirectUrl = `${target}?t=${Date.now()}`;
+        document.getElementById('go').href = redirectUrl;
+        window.location.replace(redirectUrl);
+      })
+      .catch(error => {
+        console.error('Redirect failed:', error);
+        document.body.innerHTML += '<p>Could not redirect. Please try again later.</p>';
+      });
   </script>
 </body>
 </html>
